@@ -7,10 +7,12 @@ import (
 	"net/http"
 	"github.com/astaxie/beego/context"
 	_ "loveHome/models"
+	//"loveHome/models"
 )
 
 func main() {
 	ignoreStaticPath()
+	//models.TestUploadByFilename("main.go")
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.Run(":8899")
 }
@@ -18,6 +20,7 @@ func main() {
 func ignoreStaticPath() {
 
 	//透明static
+	beego.SetStaticPath("group1/M00/","fdfs/storage_data/data/")
 
 	beego.InsertFilter("/", beego.BeforeRouter, TransparentStatic)
 	beego.InsertFilter("/*", beego.BeforeRouter, TransparentStatic)
